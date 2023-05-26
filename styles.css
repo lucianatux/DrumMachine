@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani&family=Sigmar&display=swap');
+
+body{
+    font-family: 'Sigmar', cursive;
+    font-size: 1.5rem;
+    background-color: #ffd4d4;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pad-wrap{
+    background-color: #2b50aa;
+    color: beige;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: black 3px 3px 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.drum-pad{
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: black 3px 3px 5px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#controls-wrap{
+    background-color: #ff858d;
+    border-radius: 5px;
+}
+
+#display{
+    background-color: black;
+    color: beige;
+    min-width: 200px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+    #drum-machine {
+        flex-direction: column;
+    }
+    #pad-wrap {
+        padding: 0.5rem; 
+        font-size: 1.2rem; 
+      }
+    
+      #controls-wrap{
+        padding: 0.5rem; 
+        font-size: 1.2rem; 
+      }
+}
