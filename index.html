@@ -1,21 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DrumMachine</title>
-    <link rel="shortcut icon" href="./assets/drum1.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <link rel="shortcut icon" href="./assets/drum1.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body>
     <div id="root">
-        
+        <div id="drum-machine" class="container m-1 p-1 d-flex justify-content-center align-items-center">
+            <div id="pad-wrap" class="m-3 p-3">
+                <div class="drum-pad" id="Heater-1">
+                    <audio src="./assets/Heater-1.mp3" class="clip" id="Q" data-name="Heater-1"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3" class="clip" id="Q" data-name="Heater-1"></audio>
+            -->
+                    Q
+                </div>
+                <div class="drum-pad" id="Heater-2">
+                    <audio src="./assets/Heater-2.mp3" class="clip" id="W" data-name="Heater-2"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3" class="clip" id="W" data-name="Heater-2"></audio>
+-->
+                    W
+                </div>
+                <div class="drum-pad" id="Heater-3">
+                    <audio src="./assets/Heater-3.mp3" class="clip" id="E" data-name="Heater-3"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3" class="clip" id="E" data-name="Heater-3"></audio>
+-->
+                    E
+                </div>
+                <div class="drum-pad" id="Heater-4">
+                    <audio src="./assets/Heater-4.mp3" class="clip" id="A" data-name="Heater-4"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3" class="clip" id="A" data-name="Heater-4"></audio>
+-->
+                    A
+                </div>
+                <div class="drum-pad" id="Clap">
+                    <audio src="./assets/Clap.mp3" class="clip" id="S" data-name="Clap"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3" class="clip" id="S" data-name="Clap"></audio>
+-->
+                    S
+                </div>
+                <div class="drum-pad" id="Open-HH">
+                    <audio src="./assets/Open-HH.mp3" class="clip" id="D" data-name="Open-HH"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3" class="clip" id="D" data-name="Open-HH"></audio>
+-->
+                    D
+                </div>
+                <div class="drum-pad" id="Kick-n-Hat">
+                    <audio src="./assets/Kick-n-Hat.mp3" class="clip" id="Z" data-name="Kick-n-Hat"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3" class="clip" id="Z" data-name="Kick-n-Hat"></audio>
+-->
+                    Z
+                </div>
+                <div class="drum-pad" id="Kick">
+                    <audio src="./assets/Kick.mp3" class="clip" id="X" data-name="Kick"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3" class="clip" id="X" data-name="Kick"></audio>
+-->
+                    X
+                </div>
+                <div class="drum-pad" id="Closed-HH">
+                    <audio src="./assets/Closed-HH.mp3" class="clip" id="C" data-name="Closed-HH"></audio>
+                    <!--<audio src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3" class="clip" id="C" data-name="Closed-HH"></audio>
+-->
+                    C
+                </div>
+            </div>
+            <div id="controls-wrap" class="m-3 p-3">
+                <div id="volume-wrap" class="d-flex justify-content-center align-items-center">
+                    <i class="fa fa-volume-up"></i>
+                    <input id="volumeSlider" max="1" min="0" step="0.01" type="range" value="0.59" />
+                </div>
+                <p id="display" class="m-3 p-3">Sound</p>
+            </div>
+        </div>
     </div>
 
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script type="text/babel" src="script.js"></script>
 </body>
+
 </html>
