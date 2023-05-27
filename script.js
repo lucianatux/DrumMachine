@@ -106,12 +106,13 @@ function Pad({ clip, volume, updateDisplay }) {
 
     const playSound = () => {
         const audioTag = document.getElementById(clip.keyTrigger);
+        console.log("Volumen:", volume); 
         setCurrent(true);
         setTimeout(()=> setCurrent(false),200);
         audioTag.volume = volume;
         audioTag.currentTime = 0;
-        audioTag.play();
         updateDisplay(clip.id); 
+        audioTag.play();
     }
 
     return (
