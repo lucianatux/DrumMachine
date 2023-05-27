@@ -46,11 +46,23 @@ const audioClips = [{
 }]
 
 function App() {
+
+    const [volume, setVolume] = React.useState(1);
+    const [currentClipId, setCurrentClipId] = React.useState(""); // Estado para almacenar el ID del clip actual
+
+  const updateDisplay = (clipId) => {
+    setCurrentClipId(clipId);
+  };
+
     return <div className="container m-1 p-1 d-flex justify-content-center align-items-center"
         id="drum-machine">
         <div id="pad-wrap" className="m-3 p-3">
             {audioClips.map(clip => (
-                <Pad key={clip.id} clip={clip} />
+                <Pad key={clip.id} 
+                clip={clip} 
+                volume={volume} 
+                updateDisplay={updateDisplay} 
+                />
             ))}
         </div>
         <div id="controls-wrap" className="m-3 p-3">
@@ -60,20 +72,23 @@ function App() {
             >
                 <i className="fa fa-volume-up"></i>
                 <input
+                    type= "range"
                     id="volumeSlider"
                     max="1"
                     min="0"
                     step="0.01"
-                    type="range"
-                    defaultValue="0.59"
+                    value={volume}
+                    onChange={(e)=> setVolume(e.target.value)}
                 />
             </div>
-            <p id="display" className="m-3 p-3">Sound</p>
+            <p id="display" className="m-3 p-3 text-light">{currentClipId}</p>
         </div>
     </div>;
 }
 
-function Pad({ clip }) {
+function Pad({ clip, volume, updateDisplay }) {
+
+    const [current, setCurrent] = React.useState(false);
 
     React.useEffect(() => {
         document.addEventListener('keydown', handleKeyPress);
@@ -91,12 +106,16 @@ function Pad({ clip }) {
 
     const playSound = () => {
         const audioTag = document.getElementById(clip.keyTrigger);
+        setCurrent(true);
+        setTimeout(()=> setCurrent(false),200);
+        audioTag.volume = volume;
         audioTag.currentTime = 0;
         audioTag.play();
+        updateDisplay(clip.id); 
     }
 
     return (
-        <div className="drum-pad" onClick={playSound}>
+        <div className={`drum-pad ${current && 'btn btn-light'}`} onClick={playSound}>
             <audio className="clip" id={clip.keyTrigger} src={clip.url} />
             {clip.keyTrigger}
         </div>
