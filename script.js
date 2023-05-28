@@ -48,11 +48,18 @@ const audioClips = [{
 function App() {
 
     const [volume, setVolume] = React.useState(1);
-    const [currentClipId, setCurrentClipId] = React.useState(""); // Estado para almacenar el ID del clip actual
+    const [currentClipId, setCurrentClipId] = React.useState(""); 
 
   const updateDisplay = (clipId) => {
     setCurrentClipId(clipId);
   };
+
+  const volumeRef = React.useRef(volume);
+
+  React.useEffect(() => {
+    volumeRef.current = volume;
+  }, [volume]);
+  
 
     return <div className="container m-1 p-1 d-flex justify-content-center align-items-center"
         id="drum-machine">
@@ -62,6 +69,7 @@ function App() {
                 clip={clip} 
                 volume={volume} 
                 updateDisplay={updateDisplay} 
+                volumeRef={volumeRef}
                 />
             ))}
         </div>
@@ -86,7 +94,7 @@ function App() {
     </div>;
 }
 
-function Pad({ clip, volume, updateDisplay }) {
+function Pad({ clip, volume, updateDisplay, volumeRef }) {
 
     const [current, setCurrent] = React.useState(false);
 
@@ -100,20 +108,24 @@ function Pad({ clip, volume, updateDisplay }) {
 
     const handleKeyPress = (e) => {
         if (e.keyCode === clip.keyCode) {
-            playSound();
+          playSound(); 
         }
-    }
+      };
+
 
     const playSound = () => {
         const audioTag = document.getElementById(clip.keyTrigger);
-        console.log("Volumen:", volume); 
         setCurrent(true);
         setTimeout(()=> setCurrent(false),200);
-        audioTag.volume = volume;
+        audioTag.volume = volumeRef.current;
         audioTag.currentTime = 0;
         updateDisplay(clip.id); 
         audioTag.play();
     }
+
+    const handleClick = () => {
+        playSound(volume); 
+      };
 
     return (
         <div className={`drum-pad ${current && 'btn btn-light'}`} onClick={playSound}>
